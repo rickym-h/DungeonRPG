@@ -284,8 +284,8 @@ TArray<TArray<FCoord>> ADungeonGenerator::InitPossibleRooms() const
 	
 	
 	//Iterate over every rectangle between 3 and 6 tiles dimension
-	 constexpr int MinSize = 3;
-	 constexpr int MaxSize = 6;
+	 constexpr int MinSize = 2;
+	 constexpr int MaxSize = 3;
 	 for (int Width = MinSize; Width <= MaxSize; Width++)
 	 {
 	 	for (int Height = MinSize; Height <= MaxSize; Height++)
@@ -563,6 +563,7 @@ void ADungeonGenerator::SpawnMeshes(const TArray<FDungeonRoom>& RoomLayout)
 					int Tile2RoomIndex = TilesUsed[NeighborTile];
 					if (Tile2RoomIndex < Tile1RoomIndex)
 					{
+						// Swapped to ensure consistent ordering for comparisons (E.g. since A->B is not equal to B->A, we want to sort alphabetically so any B-> turns into A->B to add to the set)
 						Swap(Tile1RoomIndex, Tile2RoomIndex);
 					}
 					AdjacencyMap[Tile1RoomIndex][Tile2RoomIndex].Add(FCoordPair(ThisTile, NeighborTile));
@@ -589,9 +590,7 @@ void ADungeonGenerator::SpawnMeshes(const TArray<FDungeonRoom>& RoomLayout)
 			WallLocations.Remove(RandomWallConnection);
 		}
 	}
-
 	
-
 	// Spawn in wall meshes at each wall coordinate
 	for (const FCoordPair Location : WallLocations)
 	{

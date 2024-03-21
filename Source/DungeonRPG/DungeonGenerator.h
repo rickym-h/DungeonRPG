@@ -120,10 +120,16 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Dungeon Actors")
+	TSubclassOf<AActor> FloorActor;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Dungeon Actors")
+	TSubclassOf<AActor> WallActor;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Dungeon Actors")
+	TSubclassOf<AActor> ArchwayActor;
 	
 	UPROPERTY(EditAnywhere)
 	UStaticMesh* FloorMesh;
-
 	UPROPERTY(EditAnywhere)
 	UStaticMesh* WallMesh;
 	UPROPERTY(EditAnywhere)
