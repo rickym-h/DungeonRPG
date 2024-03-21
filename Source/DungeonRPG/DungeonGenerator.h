@@ -114,7 +114,7 @@ protected:
 	void SpawnMeshes(const TArray<FDungeonRoom>& RoomLayout);
 
 	// TODO also SpawnFloor function
-	void SpawnWall(FCoordPair Location, UStaticMesh* Mesh);
+	void SpawnWall(FCoordPair Location);
 
 public:	
 	// Called every frame
@@ -141,7 +141,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	int NumOfRoomsToGenerate = 10;
 
-	TArray<AStaticMeshActor*> FloorActors;
-	TArray<AStaticMeshActor*> WallActors;
+	UPROPERTY()
+	TArray<AActor*> FloorActors;
+	UPROPERTY()
+	TArray<AActor*> WallActors;
 
 };

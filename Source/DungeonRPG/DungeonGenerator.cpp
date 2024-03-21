@@ -520,10 +520,11 @@ void ADungeonGenerator::SpawnMeshes(const TArray<FDungeonRoom>& RoomLayout)
 			FVector SpawnLocation = FVector(X*FloorMeshWidth, Y*FloorMeshWidth, 0);
 			
 			// Doing by spawning actors
-			AStaticMeshActor* NewMesh = GetWorld()->SpawnActor<AStaticMeshActor>(SpawnLocation, FRotator(0, 0, 0));
-			NewMesh->GetStaticMeshComponent()->SetStaticMesh(FloorMesh);
+			AActor* NewTile = GetWorld()->SpawnActor<AActor>(FloorActor, SpawnLocation, FRotator(0, 0, 0));
+			//AStaticMeshActor* NewMesh = GetWorld()->SpawnActor<AStaticMeshActor>(SpawnLocation, FRotator(0, 0, 0));
+			//NewMesh->GetStaticMeshComponent()->SetStaticMesh(FloorMesh);
 	
-			FloorActors.Push(NewMesh);
+			FloorActors.Push(NewTile);
 		}
 	}
 
@@ -594,31 +595,33 @@ void ADungeonGenerator::SpawnMeshes(const TArray<FDungeonRoom>& RoomLayout)
 	// Spawn in wall meshes at each wall coordinate
 	for (const FCoordPair Location : WallLocations)
 	{
-		SpawnWall(Location, WallMesh);
+		SpawnWall(Location);
 	}
 }
 
-void ADungeonGenerator::SpawnWall(const FCoordPair Location, UStaticMesh* Mesh)
+void ADungeonGenerator::SpawnWall(const FCoordPair Location)
 {
-	int X, Y;
+	const float X = (Location.A.X + Location.B.X)/2.f;
+	const float Y = (Location.A.Y + Location.B.Y)/2.f;
 	FRotator SpawnRotation;
 	// If X unchanged, spawn on biggest Y val coord, otherwise biggest X val coord
 	if (Location.A.X == Location.B.X) {
-		X = Location.A.X;
-		Y = FMath::Max(Location.A.Y, Location.B.Y);
+		// X = Location.A.X;
+		// Y = FMath::Max(Location.A.Y, Location.B.Y);
 		SpawnRotation = FRotator(0,0,0);
 	} else
 	{
-		X = FMath::Max(Location.A.X, Location.B.X);
-		Y = Location.A.Y;
+		// X = FMath::Max(Location.A.X, Location.B.X);
+		// Y = Location.A.Y;
 		// should be diff rotation
 		SpawnRotation = FRotator(0,90,0);
 	}
 
 	const FVector SpawnLocation = FVector(X*FloorMeshWidth, Y*FloorMeshWidth, 0);
 	// Doing by spawning actors
-	AStaticMeshActor* NewMesh = GetWorld()->SpawnActor<AStaticMeshActor>(SpawnLocation, SpawnRotation);
-	NewMesh->GetStaticMeshComponent()->SetStaticMesh(Mesh);
+	AActor* NewMesh = GetWorld()->SpawnActor<AActor>(WallActor, SpawnLocation, SpawnRotation);
+	// AStaticMeshActor* NewMesh = GetWorld()->SpawnActor<AStaticMeshActor>(SpawnLocation, SpawnRotation);
+	// NewMesh->GetStaticMeshComponent()->SetStaticMesh(Mesh);
 	
 	WallActors.Push(NewMesh);
 }
