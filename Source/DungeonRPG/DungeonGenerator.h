@@ -129,13 +129,6 @@ public:
 	TSubclassOf<AActor> ArchwayActor;
 	
 	UPROPERTY(EditAnywhere)
-	UStaticMesh* FloorMesh;
-	UPROPERTY(EditAnywhere)
-	UStaticMesh* WallMesh;
-	UPROPERTY(EditAnywhere)
-	UStaticMesh* ArchWayMesh;
-	
-	UPROPERTY(EditAnywhere)
 	float FloorMeshWidth = 500;
 
 	UPROPERTY(EditAnywhere)
