@@ -249,36 +249,6 @@ TArray<TArray<FCoord>> ADungeonGenerator::InitPossibleRooms() const
 {
 	// Init
 	TArray<TArray<FCoord>> AlLRooms;;
-
-	// AlLRooms.Add({
-	// 	FCoord(-1,-1),
-	// 	FCoord(-1,0),
-	// 	FCoord(-1,1),
-	// 	FCoord(0,-1),
-	// 	FCoord(0,0),
-	// 	FCoord(0,1),
-	// 	FCoord(1,-1),
-	// 	FCoord(1,0),
-	// 	FCoord(1,1),
-	// });
-	// AlLRooms.Add({
-	// 	FCoord(-2,-1),
-	// 	FCoord(-2,0),
-	// 	FCoord(-2,1),
-	// 	FCoord(-1,-1),
-	// 	FCoord(-1,0),
-	// 	FCoord(-1,1),
-	// 	FCoord(0,-1),
-	// 	FCoord(0,0),
-	// 	FCoord(0,1),
-	// 	FCoord(1,-1),
-	// 	FCoord(1,0),
-	// 	FCoord(1,1),
-	// 	FCoord(2,-1),
-	// 	FCoord(2,0),
-	// 	FCoord(2,1),
-	// });
-	
 	
 	//Iterate over every rectangle between 3 and 6 tiles dimension
 	 constexpr int MinSize = 2;
