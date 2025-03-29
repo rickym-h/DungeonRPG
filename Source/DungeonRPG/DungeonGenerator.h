@@ -96,6 +96,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
+	UFUNCTION(CallInEditor, Category="Dungeon Generator")
+	void GenerateDungeon();
+	
 	// Generates and spawns a layout, takes the number of rooms as an input parameter
 	void GenerateLayout(int NumRooms);
 

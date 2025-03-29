@@ -19,6 +19,14 @@ void ADungeonGenerator::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ADungeonGenerator::GenerateDungeon()
+{
+	UE_LOG(LogTemp, Warning, TEXT("ADungeonGenerator::GenerateDungeon()"))
+
+	// Verify parameters are valid
+	
 	const FDateTime StartTime = FDateTime::UtcNow();
 	GenerateLayout(NumOfRoomsToGenerate);
 	const float TimeElapsedInMs = (FDateTime::UtcNow() - StartTime).GetTotalMilliseconds();
