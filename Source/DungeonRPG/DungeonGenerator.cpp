@@ -25,6 +25,9 @@ void ADungeonGenerator::GenerateDungeon()
 {
 	UE_LOG(LogTemp, Warning, TEXT("ADungeonGenerator::GenerateDungeon()"))
 
+	// Clears any meshes that may have spawned from previous generations
+	ClearDungeon();
+
 	// Verify parameters are valid
 	
 	const FDateTime StartTime = FDateTime::UtcNow();
@@ -32,6 +35,20 @@ void ADungeonGenerator::GenerateDungeon()
 	const float TimeElapsedInMs = (FDateTime::UtcNow() - StartTime).GetTotalMilliseconds();
 	UE_LOG(LogTemp, Display, TEXT("Total Startup in %fms"), TimeElapsedInMs)
 	
+}
+
+void ADungeonGenerator::ClearDungeon()
+{
+	while (!FloorActors.IsEmpty())
+	{
+		AActor* Mesh = FloorActors.Pop();
+		Mesh->Destroy();
+	}
+	while (!WallActors.IsEmpty())
+	{
+		AActor* Mesh = WallActors.Pop();
+		Mesh->Destroy();
+	}
 }
 
 // Called every frame

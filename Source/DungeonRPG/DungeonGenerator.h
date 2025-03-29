@@ -96,8 +96,12 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
+	// Actually generates the dungeon. Can be called either from the editor or during gameplay 
 	UFUNCTION(CallInEditor, Category="Dungeon Generator")
 	void GenerateDungeon();
+
+	// If a dungeon has been generated, this clears the meshes so it can be re-generated
+	void ClearDungeon();
 	
 	// Generates and spawns a layout, takes the number of rooms as an input parameter
 	void GenerateLayout(int NumRooms);
