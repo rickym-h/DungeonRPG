@@ -6,6 +6,6 @@ The actor will generate a dungeon with a number (user defined) of custom rooms w
 
 There is a button to generate the dungeon layout in the editor interface, or a generation function can be called at runtime to generate map layouts during gameplay.
 
-![img.png](img.png)
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
+![editor_interface_image.png](editor_interface_image.png)
+![example_dungeon.png](example_dungeon.png)
+![example_dungeon1.png](example_dungeon1.png)
